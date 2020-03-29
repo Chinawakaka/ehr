@@ -8,7 +8,7 @@ import com.linln.component.actionLog.action.model.BusinessMethod;
 import com.linln.component.actionLog.action.model.BusinessType;
 import com.linln.component.shiro.ShiroUtil;
 import com.linln.modules.system.domain.ActionLog;
-import com.linln.modules.system.service.ActionLogService;
+import com.linln.modules.system.service.sys.ActionLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

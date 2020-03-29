@@ -3,7 +3,7 @@ package com.linln.component.thymeleaf.utility;
 import com.linln.common.utils.EntityBeanUtil;
 import com.linln.common.utils.SpringContextUtil;
 import com.linln.modules.system.domain.ActionLog;
-import com.linln.modules.system.service.ActionLogService;
+import com.linln.modules.system.service.sys.ActionLogService;
 
 import javax.persistence.Table;
 import java.lang.reflect.InvocationTargetException;

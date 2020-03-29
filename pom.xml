@@ -7,7 +7,7 @@
     <description>快速搭建后台管理的系统</description>
 
     <groupId>com.linln</groupId>
-    <artifactId>timo</artifactId>
+    <artifactId>ehr</artifactId>
     <version>2.0.3</version>
     <packaging>pom</packaging>
 

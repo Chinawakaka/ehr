@@ -10,7 +10,7 @@ import com.linln.component.jwt.config.properties.JwtProjectProperties;
 import com.linln.component.jwt.enums.JwtResultEnums;
 import com.linln.component.jwt.utlis.JwtUtil;
 import com.linln.modules.system.domain.User;
-import com.linln.modules.system.service.UserService;
+import com.linln.modules.system.service.sys.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

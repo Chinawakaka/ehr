@@ -14,7 +14,7 @@ import com.linln.component.actionLog.annotation.ActionLog;
 import com.linln.component.actionLog.annotation.EntityParam;
 import com.linln.component.thymeleaf.utility.DictUtil;
 import com.linln.modules.system.domain.Dict;
-import com.linln.modules.system.service.DictService;
+import com.linln.modules.system.service.sys.DictService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

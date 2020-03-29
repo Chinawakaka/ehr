@@ -12,7 +12,7 @@ import com.linln.component.actionLog.action.StatusAction;
 import com.linln.component.actionLog.annotation.ActionLog;
 import com.linln.component.actionLog.annotation.EntityParam;
 import com.linln.modules.system.domain.Dept;
-import com.linln.modules.system.service.DeptService;
+import com.linln.modules.system.service.sys.DeptService;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

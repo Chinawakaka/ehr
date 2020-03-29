@@ -9,7 +9,7 @@
     <name>业务模块</name>
 
     <parent>
-        <artifactId>timo</artifactId>
+        <artifactId>ehr</artifactId>
         <groupId>com.linln</groupId>
         <version>2.0.3</version>
     </parent>

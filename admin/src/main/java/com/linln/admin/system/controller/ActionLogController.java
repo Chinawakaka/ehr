@@ -3,7 +3,7 @@ package com.linln.admin.system.controller;
 import com.linln.common.utils.ResultVoUtil;
 import com.linln.common.vo.ResultVo;
 import com.linln.modules.system.domain.ActionLog;
-import com.linln.modules.system.service.ActionLogService;
+import com.linln.modules.system.service.sys.ActionLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

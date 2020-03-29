@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:mo="https://gitee.com/aun/Timo">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body class="timo-layout-page">
+    <div class="layui-card">
+        <div class="layui-card-header timo-card-header">
+            <span><i class="fa fa-bars"></i> 薪金管理</span>
+            <i class="layui-icon layui-icon-refresh refresh-btn"></i>
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-row timo-card-screen">
+                <div class="pull-left layui-form-pane timo-search-box">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">状态</label>
+                        <div class="layui-input-block timo-search-status">
+                            <select class="timo-search-select" name="status" mo:dict="SEARCH_STATUS" mo-selected="${param.status}"></select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">主键ID</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="id" th:value="${param.id}" placeholder="请输入主键ID" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">用户id</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userId" th:value="${param.userId}" placeholder="请输入用户id" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">用户名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userName" th:value="${param.userName}" placeholder="请输入用户名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn timo-search-btn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="pull-right screen-btn-group">
+                    <button class="layui-btn open-popup" data-title="添加薪金" th:attr="data-url=@{/wage/wage/add}" data-size="auto">
+                        <i class="fa fa-plus"></i> 添加</button>
+                    <div class="btn-group">
+                        <button class="layui-btn">操作<span class="caret"></span></button>
+                        <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                            <dd><a class="ajax-status" th:href="@{/wage/wage/status/ok}">启用</a></dd>
+                            <dd><a class="ajax-status" th:href="@{/wage/wage/status/freezed}">冻结</a></dd>
+                            <dd><a class="ajax-status" th:href="@{/wage/wage/status/delete}">删除</a></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="timo-table-wrap">
+                <table class="layui-table timo-table">
+                    <thead>
+                    <tr>
+                        <th class="timo-table-checkbox">
+                            <label class="timo-checkbox"><input type="checkbox">
+                                <i class="layui-icon layui-icon-ok"></i></label>
+                        </th>
+                        <th>主键ID</th>
+                        <th>用户名称</th>
+                        <th>数据状态</th>
+                        <th>基本薪金</th>
+                        <th>饭补</th>
+                        <th>房补</th>
+                        <th>全勤奖</th>
+                        <th>赋税</th>
+                        <th>额外补助</th>
+                        <th>罚款</th>
+                        <th>发放时间</th>
+                        <th>总计</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item:${list}">
+                        <td><label class="timo-checkbox"><input type="checkbox" th:value="${item.id}">
+                            <i class="layui-icon layui-icon-ok"></i></label></td>
+                        <td th:text="${item.id}">主键ID</td>
+                        <td th:text="${item.userName}">用户名称</td>
+                        <td th:text="${#dicts.dataStatus(item.status)}">数据状态</td>
+                        <td th:text="${item.wageBase}">基本薪金</td>
+                        <td th:text="${item.riceWage}">饭补</td>
+                        <td th:text="${item.houseWage}">房补</td>
+                        <td th:text="${item.perfectWage}">全勤奖</td>
+                        <td th:text="${item.revenueWage}">赋税</td>
+                        <td th:text="${item.addedWage}">额外补助</td>
+                        <td th:text="${item.penaltyWage}">罚款</td>
+                        <td th:text="${item.grantDate}">发放时间</td>
+                        <td th:text="${item.totalWage}">总计</td>
+                        <td>
+                            <a class="open-popup" data-title="编辑薪金" th:attr="data-url=@{'/wage/wage/edit/'+${item.id}}" data-size="auto" href="#">编辑</a>
+                            <a class="open-popup" data-title="详细信息" th:attr="data-url=@{'/wage/wage/detail/'+${item.id}}" data-size="800,600" href="#">详细</a>
+                            <a class="ajax-get" data-msg="您是否确认删除" th:href="@{/wage/wage/status/delete(ids=${item.id})}">删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:replace="/common/fragment :: page"></div>
+        </div>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

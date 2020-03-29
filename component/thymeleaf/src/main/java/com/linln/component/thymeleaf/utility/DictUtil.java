@@ -2,7 +2,7 @@ package com.linln.component.thymeleaf.utility;
 
 import com.linln.common.utils.EhCacheUtil;
 import com.linln.modules.system.domain.Dict;
-import com.linln.modules.system.service.DictService;
+import com.linln.modules.system.service.sys.DictService;
 import com.linln.common.utils.SpringContextUtil;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;

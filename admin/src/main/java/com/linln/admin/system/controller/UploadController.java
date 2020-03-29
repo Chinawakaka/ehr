@@ -6,7 +6,7 @@ import com.linln.common.vo.ResultVo;
 import com.linln.component.fileUpload.FileUpload;
 import com.linln.component.fileUpload.enums.UploadResultEnum;
 import com.linln.modules.system.domain.Upload;
-import com.linln.modules.system.service.UploadService;
+import com.linln.modules.system.service.sys.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

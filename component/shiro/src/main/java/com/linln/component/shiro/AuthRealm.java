@@ -4,7 +4,7 @@ import com.linln.common.constant.AdminConst;
 import com.linln.common.enums.StatusEnum;
 import com.linln.modules.system.domain.Role;
 import com.linln.modules.system.domain.User;
-import com.linln.modules.system.service.UserService;
+import com.linln.modules.system.service.sys.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;

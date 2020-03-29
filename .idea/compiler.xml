@@ -13,9 +13,9 @@
         <module name="excel" />
         <module name="fileUpload" />
         <module name="system" />
-        <module name="actionLog" />
-        <module name="shiro" />
         <module name="admin" />
+        <module name="shiro" />
+        <module name="actionLog" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +24,7 @@
       <module name="common" target="1.8" />
       <module name="component" target="1.8" />
       <module name="devtools" target="1.8" />
+      <module name="ehr" target="1.8" />
       <module name="excel" target="1.8" />
       <module name="fileUpload" target="1.8" />
       <module name="jwt" target="1.8" />
@@ -31,7 +32,6 @@
       <module name="shiro" target="1.8" />
       <module name="system" target="1.8" />
       <module name="thymeleaf" target="1.8" />
-      <module name="timo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

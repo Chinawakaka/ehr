@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="layui-form timo-compile">
+    <form th:action="@{/wage/wage/save}">
+        <input type="hidden" name="id" th:if="${wage}" th:value="${wage.id}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户id</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="userId" placeholder="请输入用户id" th:value="${wage?.userId}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名称</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="userName" placeholder="请输入用户名称" th:value="${wage?.userName}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">基本薪金</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="wageBase" placeholder="请输入基本薪金" th:value="${wage?.wageBase}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">饭补</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="riceWage" placeholder="请输入饭补" th:value="${wage?.riceWage}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">房补</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="houseWage" placeholder="请输入房补" th:value="${wage?.houseWage}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">全勤奖</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="perfectWage" placeholder="请输入全勤奖" th:value="${wage?.perfectWage}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">赋税</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="revenueWage" placeholder="请输入赋税" th:value="${wage?.revenueWage}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">额外补助</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="addedWage" placeholder="请输入额外补助" th:value="${wage?.addedWage}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">罚款</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="penaltyWage" placeholder="请输入罚款" th:value="${wage?.penaltyWage}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发放时间</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="grantDate" placeholder="请输入发放时间" th:value="${wage?.grantDate}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">总计</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="totalWage" placeholder="请输入总计" th:value="${wage?.totalWage}">
+            </div>
+        </div>
+        <div class="layui-form-item timo-finally">
+            <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 保存</button>
+            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

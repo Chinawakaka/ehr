@@ -7,7 +7,7 @@ import com.linln.component.actionLog.action.model.BusinessMethod;
 import com.linln.component.actionLog.action.model.LoginMethod;
 import com.linln.modules.system.domain.ActionLog;
 import com.linln.modules.system.domain.User;
-import com.linln.modules.system.service.ActionLogService;
+import com.linln.modules.system.service.sys.ActionLogService;
 import com.linln.common.utils.SpringContextUtil;
 import org.springframework.beans.BeanUtils;
 

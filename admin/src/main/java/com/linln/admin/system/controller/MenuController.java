@@ -13,7 +13,7 @@ import com.linln.component.actionLog.annotation.ActionLog;
 import com.linln.component.actionLog.annotation.EntityParam;
 import com.linln.component.thymeleaf.utility.DictUtil;
 import com.linln.modules.system.domain.Menu;
-import com.linln.modules.system.service.MenuService;
+import com.linln.modules.system.service.sys.MenuService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

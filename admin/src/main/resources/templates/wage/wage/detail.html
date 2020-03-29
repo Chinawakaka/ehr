@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>主键ID</th>
+                    <td th:text="${wage.id}"></td>
+                    <th>用户id</th>
+                    <td th:text="${wage.userId}"></td>
+                </tr>
+                <tr>
+                    <th>用户名称</th>
+                    <td th:text="${wage.userName}"></td>
+                    <th>基本薪金</th>
+                    <td th:text="${wage.wageBase}"></td>
+                </tr>
+                <tr>
+                    <th>饭补</th>
+                    <td th:text="${wage.riceWage}"></td>
+                    <th>房补</th>
+                    <td th:text="${wage.houseWage}"></td>
+                </tr>
+                <tr>
+                    <th>全勤奖</th>
+                    <td th:text="${wage.perfectWage}"></td>
+                    <th>赋税</th>
+                    <td th:text="${wage.revenueWage}"></td>
+                </tr>
+                <tr>
+                    <th>额外补助</th>
+                    <td th:text="${wage.addedWage}"></td>
+                    <th>罚款</th>
+                    <td th:text="${wage.penaltyWage}"></td>
+                </tr>
+                <tr>
+                    <th>发放时间</th>
+                    <td th:text="${wage.grantDate}"></td>
+                    <th>总计</th>
+                    <td th:text="${wage.totalWage}"></td>
+                </tr>
+                <tr>
+                    <th>创建者</th>
+                    <td th:text="${wage.createBy?.nickname}"></td>
+                    <th>更新者</th>
+                    <td th:text="${wage.updateBy?.nickname}"></td>
+                </tr>
+                <tr>
+                    <th>创建时间</th>
+                    <td th:text="${#dates.format(wage.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <th>更新时间</th>
+                    <td th:text="${#dates.format(wage.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

@@ -12,7 +12,7 @@ import com.linln.component.actionLog.action.UserAction;
 import com.linln.component.actionLog.annotation.ActionLog;
 import com.linln.component.shiro.ShiroUtil;
 import com.linln.modules.system.domain.User;
-import com.linln.modules.system.service.RoleService;
+import com.linln.modules.system.service.sys.RoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
