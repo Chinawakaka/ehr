@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>主键ID</th>
+                    <td th:text="${attence.id}"></td>
+                    <th>打卡类型</th>
+                    <td th:text="${attence.type}"></td>
+                </tr>
+                <tr>
+                    <th>打卡人</th>
+                    <td th:text="${attence.createBy?.nickname}"></td>
+                    <th>更新者</th>
+                    <td th:text="${attence.updateBy?.nickname}"></td>
+                </tr>
+                <tr>
+                    <th>打卡时间</th>
+                    <td th:text="${#dates.format(attence.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <th>更新时间</th>
+                    <td th:text="${#dates.format(attence.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>

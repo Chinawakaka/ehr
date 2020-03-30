@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="timo-detail-page">
+        <div class="timo-detail-title">基本信息</div>
+        <table class="layui-table timo-detail-table">
+            <colgroup>
+                <col width="100px"><col>
+                <col width="100px"><col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>主键ID</th>
+                    <td th:text="${reward.id}"></td>
+                    <th>奖惩人</th>
+                    <td th:text="${reward.rewardUserName}"></td>
+                </tr>
+                <tr>
+                    <th>奖惩名称</th>
+                    <td th:text="${reward.rewardName}"></td>
+                    <th>奖惩原因</th>
+                    <td th:text="${reward.rewardReason}"></td>
+                </tr>
+                <tr>
+                    <th>奖惩用户id</th>
+                    <td th:text="${reward.rewardUserId}" colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>创建者</th>
+                    <td th:text="${reward.createBy?.nickname}"></td>
+                    <th>更新者</th>
+                    <td th:text="${reward.updateBy?.nickname}"></td>
+                </tr>
+                <tr>
+                    <th>更新时间</th>
+                    <td th:text="${#dates.format(reward.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <th>创建时间</th>
+                    <td th:text="${#dates.format(reward.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                <tr>
+                    <th>奖惩说明</th>
+                    <td th:text="${reward.remark}" colspan="3"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script th:replace="/common/template :: script"></script>
+</body>
+</html>
