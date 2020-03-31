@@ -1,5 +1,6 @@
 package com.linln.admin.wage.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.linln.common.enums.StatusEnum;
 import com.linln.common.utils.StatusUtil;
@@ -13,6 +14,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -82,7 +84,7 @@ public class Wage implements Serializable {
     // 罚款
     private BigDecimal penaltyWage;
     // 发放时间
-    private BigDecimal grantDate;
+    private Date grantDate;
     // 总计
     private BigDecimal totalWage;
 }

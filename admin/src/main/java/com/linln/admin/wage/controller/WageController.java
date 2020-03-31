@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -57,7 +58,9 @@ public class WageController {
      */
     @GetMapping("/add")
     @RequiresPermissions("wage:wage:add")
-    public String toAdd() {
+    public String toAdd(Model model) {
+        List<Wage> list = wageService.getList();
+        model.addAttribute("list", list);
         return "/wage/wage/add";
     }
 
@@ -84,6 +87,10 @@ public class WageController {
             Wage beWage = wageService.getById(wage.getId());
             EntityBeanUtil.copyProperties(beWage, wage);
         }
+        //计算总计金额
+        BigDecimal total = wage.getWageBase().add(wage.getRiceWage()).add(wage.getHouseWage()).add(wage.getPerfectWage())
+                .add(wage.getAddedWage()).subtract(wage.getRevenueWage()).subtract(wage.getPenaltyWage());
+        wage.setTotalWage(total);
 
         // 保存数据
         wageService.save(wage);

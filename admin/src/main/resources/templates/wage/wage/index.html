@@ -19,18 +19,6 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">主键ID</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="id" th:value="${param.id}" placeholder="请输入主键ID" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">用户id</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="userId" th:value="${param.userId}" placeholder="请输入用户id" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
                         <label class="layui-form-label">用户名称</label>
                         <div class="layui-input-block">
                             <input type="text" name="userName" th:value="${param.userName}" placeholder="请输入用户名称" autocomplete="off" class="layui-input">
@@ -63,7 +51,6 @@
                             <label class="timo-checkbox"><input type="checkbox">
                                 <i class="layui-icon layui-icon-ok"></i></label>
                         </th>
-                        <th>主键ID</th>
                         <th>用户名称</th>
                         <th>数据状态</th>
                         <th>基本薪金</th>
@@ -82,7 +69,6 @@
                     <tr th:each="item:${list}">
                         <td><label class="timo-checkbox"><input type="checkbox" th:value="${item.id}">
                             <i class="layui-icon layui-icon-ok"></i></label></td>
-                        <td th:text="${item.id}">主键ID</td>
                         <td th:text="${item.userName}">用户名称</td>
                         <td th:text="${#dicts.dataStatus(item.status)}">数据状态</td>
                         <td th:text="${item.wageBase}">基本薪金</td>

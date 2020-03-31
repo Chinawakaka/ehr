@@ -6,16 +6,18 @@
     <div class="layui-form timo-compile">
     <form th:action="@{/wage/wage/save}">
         <input type="hidden" name="id" th:if="${wage}" th:value="${wage.id}">
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户id</label>
-            <div class="layui-input-inline">
-                <input class="layui-input" type="text" name="userId" placeholder="请输入用户id" th:value="${wage?.userId}">
-            </div>
-        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">用户id</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input class="layui-input" type="text" name="userId" placeholder="请输入用户id" th:value="${wage?.userId}">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="layui-form-item">
             <label class="layui-form-label">用户名称</label>
             <div class="layui-input-inline">
-                <input class="layui-input" type="text" name="userName" placeholder="请输入用户名称" th:value="${wage?.userName}">
+                <select name="userName" lay-filter="userName" placeholder="请输入用户名称" th:each="item:${list}">
+                    <option th:value="${item.userName}"></option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
@@ -60,18 +62,24 @@
                 <input class="layui-input" type="text" name="penaltyWage" placeholder="请输入罚款" th:value="${wage?.penaltyWage}">
             </div>
         </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">发放时间</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input class="layui-input" type="text" name="grantDate" placeholder="请输入发放时间" th:value="${wage?.grantDate}">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="layui-form-item">
             <label class="layui-form-label">发放时间</label>
             <div class="layui-input-inline">
-                <input class="layui-input" type="text" name="grantDate" placeholder="请输入发放时间" th:value="${wage?.grantDate}">
+                <input type="text" class="layui-input" name="grantDate" id="laydate" placeholder="请输入发放时间" th:value="${wage?.grantDate}">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">总计</label>
-            <div class="layui-input-inline">
-                <input class="layui-input" type="text" name="totalWage" placeholder="请输入总计" th:value="${wage?.totalWage}">
-            </div>
-        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">总计</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input class="layui-input" type="text" name="totalWage" placeholder="请输入总计" th:value="${wage?.totalWage}">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="layui-form-item timo-finally">
             <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 保存</button>
             <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
@@ -79,5 +87,6 @@
     </form>
 </div>
 <script th:replace="/common/template :: script"></script>
+<script type="text/javascript" th:src="@{/js/build.js}"></script>
 </body>
 </html>

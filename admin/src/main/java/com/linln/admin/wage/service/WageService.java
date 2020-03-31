@@ -22,6 +22,12 @@ public interface WageService {
     Page<Wage> getPageList(Example<Wage> example);
 
     /**
+     * 获取所有列表数据
+     * @return
+     */
+    List<Wage> getList();
+
+    /**
      * 根据ID查询数据
      * @param id 主键ID
      */

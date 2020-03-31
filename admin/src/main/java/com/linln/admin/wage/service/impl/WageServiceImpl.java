@@ -46,6 +46,11 @@ public class WageServiceImpl implements WageService {
         return wageRepository.findAll(example, page);
     }
 
+    @Override
+    public List<Wage> getList() {
+        return wageRepository.findAll();
+    }
+
     /**
      * 保存数据
      * @param wage 实体对象
