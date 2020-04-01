@@ -8,6 +8,9 @@ import com.linln.common.utils.EntityBeanUtil;
 import com.linln.common.utils.ResultVoUtil;
 import com.linln.common.utils.StatusUtil;
 import com.linln.common.vo.ResultVo;
+import com.linln.component.shiro.ShiroUtil;
+import com.linln.modules.system.domain.User;
+import com.linln.modules.system.enums.AttenceEnum;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -18,6 +21,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -83,7 +88,19 @@ public class AttenceController {
             Attence beAttence = attenceService.getById(attence.getId());
             EntityBeanUtil.copyProperties(beAttence, attence);
         }
-
+        User user = ShiroUtil.getSubject();
+        attence.setCreateByName(user.getUsername());
+        //更具当前时间判断打卡类型<9.00 上班卡 >6.00 下班卡
+        Date localDate = new Date();
+        Date onDate = new Date(localDate.getYear(), localDate.getMonth(), localDate.getDay(), 9, 0, 0);
+        Date offDate = new Date(localDate.getYear(), localDate.getMonth(), localDate.getDay(), 18, 0, 0);
+        if (localDate.after(onDate)){
+            attence.setType(AttenceEnum.ONATTENCE.getCode());
+        }else if (localDate.after(offDate)){
+            attence.setType(AttenceEnum.OFFATTENCE.getCode());
+        }else {
+            attence.setType(AttenceEnum.EXCEPTATTENCE.getCode());
+        }
         // 保存数据
         attenceService.save(attence);
         return ResultVoUtil.SAVE_SUCCESS;

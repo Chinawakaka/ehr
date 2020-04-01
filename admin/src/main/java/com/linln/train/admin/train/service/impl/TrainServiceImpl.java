@@ -1,10 +1,10 @@
-package com.linln.admin.rewardSystem.service.impl;
+package com.linln.train.admin.train.service.impl;
 
 import com.linln.common.data.PageSort;
 import com.linln.common.enums.StatusEnum;
-import com.linln.admin.rewardSystem.domain.RewardSystem;
-import com.linln.admin.rewardSystem.repository.RewardSystemRepository;
-import com.linln.admin.rewardSystem.service.RewardSystemService;
+import com.linln.train.admin.train.domain.Train;
+import com.linln.train.admin.train.repository.TrainRepository;
+import com.linln.train.admin.train.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -16,13 +16,13 @@ import java.util.List;
 
 /**
  * @author liangjunhao
- * @date 2020/03/29
+ * @date 2020/03/31
  */
 @Service
-public class RewardSystemServiceImpl implements RewardSystemService {
+public class TrainServiceImpl implements TrainService {
 
     @Autowired
-    private RewardSystemRepository rewardSystemRepository;
+    private TrainRepository trainRepository;
 
     /**
      * 根据ID查询数据
@@ -30,8 +30,8 @@ public class RewardSystemServiceImpl implements RewardSystemService {
      */
     @Override
     @Transactional
-    public RewardSystem getById(Long id) {
-        return rewardSystemRepository.findById(id).orElse(null);
+    public Train getById(Long id) {
+        return trainRepository.findById(id).orElse(null);
     }
 
     /**
@@ -40,19 +40,19 @@ public class RewardSystemServiceImpl implements RewardSystemService {
      * @return 返回分页数据
      */
     @Override
-    public Page<RewardSystem> getPageList(Example<RewardSystem> example) {
+    public Page<Train> getPageList(Example<Train> example) {
         // 创建分页对象
         PageRequest page = PageSort.pageRequest();
-        return rewardSystemRepository.findAll(example, page);
+        return trainRepository.findAll(example, page);
     }
 
     /**
      * 保存数据
-     * @param rewardSystem 实体对象
+     * @param train 实体对象
      */
     @Override
-    public RewardSystem save(RewardSystem rewardSystem) {
-        return rewardSystemRepository.save(rewardSystem);
+    public Train save(Train train) {
+        return trainRepository.save(train);
     }
 
     /**
@@ -61,11 +61,6 @@ public class RewardSystemServiceImpl implements RewardSystemService {
     @Override
     @Transactional
     public Boolean updateStatus(StatusEnum statusEnum, List<Long> idList) {
-        return rewardSystemRepository.updateStatus(statusEnum.getCode(), idList) > 0;
-    }
-
-    @Override
-    public List<RewardSystem> findRewardSystemList() {
-        return rewardSystemRepository.findAll();
+        return trainRepository.updateStatus(statusEnum.getCode(), idList) > 0;
     }
 }

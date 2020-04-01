@@ -114,6 +114,11 @@ public class UserServiceImpl implements UserService {
         }, page);
     }
 
+    @Override
+    public List<User> getList() {
+        return userRepository.findAll();
+    }
+
     /**
      * 保存用户
      * @param user 用户实体类

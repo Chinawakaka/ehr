@@ -21,7 +21,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">打卡人</label>
                         <div class="layui-input-block">
-                            <input type="text" name="createBy" th:value="${param.createBy}" placeholder="请输入打卡人" autocomplete="off" class="layui-input">
+                            <input type="text" name="createBy" th:value="${param.createByName}" placeholder="请输入打卡人" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -32,8 +32,8 @@
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">打卡类型</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="type" th:value="${param.type}" placeholder="请输入打卡类型" autocomplete="off" class="layui-input">
+                        <div class="layui-input-block timo-search-status">
+                            <select class="timo-search-select" type="text" name="type" mo:dict="ATTENCE_STATUS" mo-selected="${param.status}"></select>
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -43,8 +43,10 @@
                     </div>
                 </div>
                 <div class="pull-right screen-btn-group">
-                    <button class="layui-btn open-popup" data-title="添加attence" th:attr="data-url=@{/attence/attence/add}" data-size="auto">
-                        <i class="fa fa-plus"></i> 添加</button>
+                    <button class="layui-btn" data-title="打卡" id="attence" data-size="auto">
+                        <i class="fa fa-plus"></i> 打卡</button>
+<!--                    <button class="layui-btn open-popup" data-title="添加" th:attr="data-url=@{/attence/attence/add}" data-size="auto">-->
+<!--                        <i class="fa fa-plus"></i> 添加</button>-->
                     <div class="btn-group">
                         <button class="layui-btn">操作<span class="caret"></span></button>
                         <dl class="layui-nav-child layui-anim layui-anim-upbit">
@@ -73,9 +75,9 @@
                     <tr th:each="item:${list}">
                         <td><label class="timo-checkbox"><input type="checkbox" th:value="${item.id}">
                             <i class="layui-icon layui-icon-ok"></i></label></td>
-                        <td th:text="${item.createBy}">打卡人</td>
+                        <td th:text="${item.createByName}">打卡人</td>
                         <td th:text="${#dates.format(item.createDate, 'yyyy-MM-dd HH:mm:ss')}">打卡时间</td>
-                        <td th:text="${item.type}">打卡类型</td>
+                        <td th:text="${#dicts.keyValue('ATTENCE_STATUS', item.type)}">打卡类型</td>
                         <td>
                             <a class="open-popup" data-title="编辑attence" th:attr="data-url=@{'/attence/attence/edit/'+${item.id}}" data-size="auto" href="#">编辑</a>
                             <a class="open-popup" data-title="详细信息" th:attr="data-url=@{'/attence/attence/detail/'+${item.id}}" data-size="800,600" href="#">详细</a>
@@ -89,5 +91,22 @@
         </div>
     </div>
 <script th:replace="/common/template :: script"></script>
+    <script src="/js/plugins/jquery-2.2.4.js"></script>
+    <script>
+
+        $(function(){
+            $('#attence').on('click', function(){
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url:"/attence/attence/save",
+                    async: true,
+                    success: function(data) {
+                        $.fn.Messager(data);
+                    },
+                });
+            });
+        })
+    </script>
 </body>
 </html>

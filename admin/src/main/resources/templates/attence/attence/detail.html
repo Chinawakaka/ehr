@@ -15,7 +15,7 @@
                     <th>主键ID</th>
                     <td th:text="${attence.id}"></td>
                     <th>打卡类型</th>
-                    <td th:text="${attence.type}"></td>
+                    <td th:text="${#dicts.keyValue('ATTENCE_STATUS', attence.type)}"></td>
                 </tr>
                 <tr>
                     <th>打卡人</th>

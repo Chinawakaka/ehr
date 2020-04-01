@@ -1,11 +1,8 @@
-package com.linln.admin.wage.domain;
+package com.linln.train.admin.train.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.linln.common.enums.StatusEnum;
 import com.linln.common.utils.StatusUtil;
-import com.linln.component.excel.annotation.Excel;
-import com.linln.component.excel.enums.ExcelType;
 import com.linln.modules.system.domain.User;
 import lombok.Data;
 import org.hibernate.annotations.NotFound;
@@ -33,25 +30,18 @@ import javax.persistence.Table;
 
 /**
  * @author liangjunhao
- * @date 2020/03/28
+ * @date 2020/03/31
  */
 @Data
 @Entity
-@Table(name="t_wage")
+@Table(name="t_train")
 @EntityListeners(AuditingEntityListener.class)
 @Where(clause = StatusUtil.NOT_DELETE)
-@Excel("薪金数据")
-public class Wage implements Serializable {
+public class Train implements Serializable {
     // 主键ID
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    // 用户id
-    @Excel(value = "用户ID", type = ExcelType.EXPORT)
-    private Long userId;
-    // 用户名称
-    @Excel(value = "用户名")
-    private String userName;
     // 创建时间
     @CreatedDate
     private Date createDate;
@@ -74,31 +64,20 @@ public class Wage implements Serializable {
     private User updateBy;
     // 数据状态
     private Byte status = StatusEnum.OK.getCode();
-    // 基本薪金
-    @Excel(value = "基本薪金")
-    private BigDecimal wageBase;
-    // 饭补
-    @Excel(value = "饭补")
-    private BigDecimal riceWage;
-    // 房补
-    @Excel(value = "房补")
-    private BigDecimal houseWage;
-    // 全勤奖
-    @Excel(value = "全勤奖")
-    private BigDecimal perfectWage;
-    // 赋税
-    @Excel(value = "赋税")
-    private BigDecimal revenueWage;
-    // 额外补助
-    @Excel(value = "额外补助")
-    private BigDecimal addedWage;
-    // 罚款
-    @Excel(value = "罚款")
-    private BigDecimal penaltyWage;
-    // 发放时间
-    @Excel(value = "发放时间")
-    private Date grantDate;
-    // 总计
-    @Excel(value = "总计")
-    private BigDecimal totalWage;
+    // 培训名称
+    private String trainName;
+    // 主持人
+    private String hostName;
+    // 参训人员
+    private String tranUsers;
+    // 开始时间
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date startDate;
+    // 结束时间
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date endDate;
+    // 培训费用
+    private BigDecimal tranCost;
+    // 备注
+    private String remark;
 }

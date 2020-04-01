@@ -53,6 +53,17 @@ public class RewardSystemController {
     }
 
     /**
+     * 获取所有奖惩制度列表
+     * @return
+     */
+    @GetMapping("/findRewardSystemList")
+    @ResponseBody
+    public List<RewardSystem> findRewardSystemList(){
+
+        return rewardSystemService.findRewardSystemList();
+    }
+
+    /**
      * 跳转到添加页面
      */
     @GetMapping("/add")

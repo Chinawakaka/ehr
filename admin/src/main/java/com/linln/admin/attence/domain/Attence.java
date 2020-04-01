@@ -63,5 +63,7 @@ public class Attence implements Serializable {
     // 数据状态
     private Byte status = StatusEnum.OK.getCode();
     // 打卡类型
-    private String type;
+    private Byte type;
+    //打卡人
+    private String createByName;
 }

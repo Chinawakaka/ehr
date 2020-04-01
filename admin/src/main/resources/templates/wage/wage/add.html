@@ -15,11 +15,17 @@
         <div class="layui-form-item">
             <label class="layui-form-label">用户名称</label>
             <div class="layui-input-inline">
-                <select name="userName" lay-filter="userName" placeholder="请输入用户名称" th:each="item:${list}">
-                    <option th:value="${item.userName}"></option>
+                <select name="userName" id="userName" lay-filter="userName" placeholder="请输入用户名称">
+                    <option value=""></option>
                 </select>
             </div>
         </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">用户名称</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input class="layui-input" type="text" name="userName" placeholder="请输入用户名称" th:value="${wage?.userName}">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="layui-form-item">
             <label class="layui-form-label">基本薪金</label>
             <div class="layui-input-inline">
@@ -71,7 +77,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">发放时间</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" name="grantDate" id="laydate" placeholder="请输入发放时间" th:value="${wage?.grantDate}">
+                <input type="text" class="layui-input" name="grantDate" id="grantDate" placeholder="请输入发放时间" th:value="${wage?.grantDate}">
             </div>
         </div>
 <!--        <div class="layui-form-item">-->
@@ -87,6 +93,33 @@
     </form>
 </div>
 <script th:replace="/common/template :: script"></script>
-<script type="text/javascript" th:src="@{/js/build.js}"></script>
+<script src="/js/plugins/jquery-2.2.4.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({elem:'#grantDate',type: 'datetime',trigger: 'click'});
+    });
+
+    $.get({
+        url: "/wage/wage/findUserList",
+        type: 'GET',
+        dataType: 'json',
+        success:function (data) {
+            var list = data;
+            console.debug(list);
+            var select = document.getElementById('userName');
+            if (list != null || list.size() > 0) {
+                for (var c in list) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", list[c].username);
+                    option.innerText = list[c].username;
+                    select.appendChild(option);
+                    // document.getElementById('userId').setAttribute("value", list[c].id);
+                }
+            }
+            layui.form.render('select');
+        }
+    });
+</script>
 </body>
 </html>

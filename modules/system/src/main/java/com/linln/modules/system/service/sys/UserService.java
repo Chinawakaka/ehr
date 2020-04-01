@@ -20,6 +20,9 @@ public interface UserService {
      */
     Page<User> getPageList(User user);
 
+
+    List<User> getList();
+
     /**
      * 保存用户
      * @param user 用户实体类

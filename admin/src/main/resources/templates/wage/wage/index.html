@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:mo="https://gitee.com/aun/Timo">
+      xmlns:mo="https://gitee.com/aun/Timo"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
 </head>
 <body class="timo-layout-page">
@@ -8,6 +9,7 @@
         <div class="layui-card-header timo-card-header">
             <span><i class="fa fa-bars"></i> 薪金管理</span>
             <i class="layui-icon layui-icon-refresh refresh-btn"></i>
+            <a th:href="@{/wage/wage/export}" shiro:hasPermission="system:user:export"><i class="fa fa-download"></i></a>
         </div>
         <div class="layui-card-body">
             <div class="layui-row timo-card-screen">

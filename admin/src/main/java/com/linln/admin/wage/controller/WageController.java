@@ -1,13 +1,18 @@
 package com.linln.admin.wage.controller;
 
 import com.linln.admin.wage.domain.Wage;
+import com.linln.admin.wage.repository.WageRepository;
 import com.linln.admin.wage.service.WageService;
 import com.linln.admin.wage.validator.WageValid;
 import com.linln.common.enums.StatusEnum;
 import com.linln.common.utils.EntityBeanUtil;
 import com.linln.common.utils.ResultVoUtil;
+import com.linln.common.utils.SpringContextUtil;
 import com.linln.common.utils.StatusUtil;
 import com.linln.common.vo.ResultVo;
+import com.linln.component.excel.ExcelUtil;
+import com.linln.modules.system.domain.User;
+import com.linln.modules.system.service.sys.UserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -31,6 +36,8 @@ public class WageController {
 
     @Autowired
     private WageService wageService;
+    @Autowired
+    private UserService userService;
 
     /**
      * 列表页面
@@ -59,9 +66,25 @@ public class WageController {
     @GetMapping("/add")
     @RequiresPermissions("wage:wage:add")
     public String toAdd(Model model) {
-        List<Wage> list = wageService.getList();
-        model.addAttribute("list", list);
         return "/wage/wage/add";
+    }
+
+    @GetMapping("/findUserList")
+    @ResponseBody
+    public List<User> findUserList(){
+        List<User> list = userService.getList();
+        return list;
+    }
+
+    /**
+     * 导出用户数据
+     */
+    @GetMapping("/export")
+    @RequiresPermissions("system:user:export")
+    @ResponseBody
+    public void exportExcel() {
+        WageRepository wageRepository = SpringContextUtil.getBean(WageRepository.class);
+        ExcelUtil.exportExcel(Wage.class, wageRepository.findAll());
     }
 
     /**

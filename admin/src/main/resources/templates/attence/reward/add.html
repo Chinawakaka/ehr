@@ -7,15 +7,37 @@
     <form th:action="@{/attence/reward/save}">
         <input type="hidden" name="id" th:if="${reward}" th:value="${reward.id}">
         <div class="layui-form-item">
-            <label class="layui-form-label">奖惩人</label>
+            <label class="layui-form-label">奖惩用户id</label>
             <div class="layui-input-inline">
-                <input class="layui-input" type="text" name="rewardUserName" placeholder="请输入奖惩人" th:value="${reward?.rewardUserName}">
+                <input class="layui-input" type="text" name="rewardUserId" placeholder="请输入奖惩用户id" th:value="${reward?.rewardUserId}">
             </div>
         </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">奖惩人</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input class="layui-input" type="text" name="rewardUserName" placeholder="请输入奖惩人" th:value="${reward?.rewardUserName}">-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label">奖惩人</label>
+            <div class="layui-input-inline">
+                <select name="rewardUserName" id="rewardUserName" lay-filter="rewardUserName" placeholder="请输入用户名称" th:value="${reward?.rewardUserName}">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">奖惩名称</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input class="layui-input" type="text" name="rewardName" placeholder="请输入奖惩名称" th:value="${reward?.rewardName}">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="layui-form-item">
             <label class="layui-form-label">奖惩名称</label>
             <div class="layui-input-inline">
-                <input class="layui-input" type="text" name="rewardName" placeholder="请输入奖惩名称" th:value="${reward?.rewardName}">
+                <select name="rewardName" id="rewardName" lay-filter="rewardName" placeholder="请输入奖惩名称" th:value="${reward?.rewardName}">
+                    <option value=""></option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
@@ -24,14 +46,8 @@
                 <input class="layui-input" type="text" name="rewardReason" placeholder="请输入奖惩原因" th:value="${reward?.rewardReason}">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">奖惩用户id</label>
-            <div class="layui-input-inline">
-                <input class="layui-input" type="text" name="rewardUserId" placeholder="请输入奖惩用户id" th:value="${reward?.rewardUserId}">
-            </div>
-        </div>
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">备注</label>
+            <label class="layui-form-label">奖惩说明</label>
             <div class="layui-input-block">
                 <textarea placeholder="请输入内容" class="layui-textarea" name="remark">[[${reward?.remark}]]</textarea>
             </div>
@@ -43,5 +59,46 @@
     </form>
 </div>
 <script th:replace="/common/template :: script"></script>
+    <script src="/js/plugins/jquery-2.2.4.js"></script>
+    <script>
+        $.get({
+            url: "/wage/wage/findUserList",
+            type: 'GET',
+            dataType: 'json',
+            success:function (data) {
+                var list = data;
+                var select = document.getElementById('rewardUserName');
+                if (list != null || list.size() > 0) {
+                    for (var c in list) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", list[c].username);
+                        option.innerText = list[c].username;
+                        select.appendChild(option);
+                        // document.getElementById('userId').setAttribute("value", list[c].id);
+                    }
+                }
+                layui.form.render('select');
+            }
+        });
+        $.get({
+            url: "/rewardSystem/rewardSystem/findRewardSystemList",
+            type: 'GET',
+            dataType: 'json',
+            success:function (data) {
+                var list = data;
+                var select = document.getElementById('rewardName');
+                if (list != null || list.size() > 0) {
+                    for (var c in list) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", list[c].systemName);
+                        option.innerText = list[c].systemName;
+                        select.appendChild(option);
+                        // document.getElementById('userId').setAttribute("value", list[c].id);
+                    }
+                }
+                layui.form.render('select');
+            }
+        });
+    </script>
 </body>
 </html>

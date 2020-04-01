@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+</head>
+<body>
+    <div class="layui-form timo-compile">
+    <form th:action="@{/train/save}">
+        <input type="hidden" name="id" th:if="${train}" th:value="${train.id}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">培训名称</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="trainName" placeholder="请输入培训名称" th:value="${train?.trainName}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">主持人</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="hostName" placeholder="请输入主持人" th:value="${train?.hostName}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">参训人员</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="tranUsers" placeholder="请输入参训人员" th:value="${train?.tranUsers}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="startDate" id="startDate" placeholder="请输入开始时间" th:value="${train?.startDate}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="endDate" id="endDate"  placeholder="请输入结束时间" th:value="${train?.endDate}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">培训费用</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" name="tranCost" placeholder="请输入培训费用" th:value="${train?.tranCost}">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea" name="remark">[[${train?.remark}]]</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item timo-finally">
+            <button class="layui-btn ajax-submit"><i class="fa fa-check-circle"></i> 保存</button>
+            <button class="layui-btn btn-secondary close-popup"><i class="fa fa-times-circle"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script th:replace="/common/template :: script"></script>
+<script src="/static/lib/layui-v2.3.0/layui.js"></script>
+<script>
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            laydate.render({elem:'#startDate',type: 'datetime',trigger: 'click'});
+            laydate.render({elem:'#endDate',type: 'datetime',trigger: 'click'});
+        });
+</script>
+</body>
+</html>
