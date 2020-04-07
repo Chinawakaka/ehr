@@ -5,6 +5,7 @@ import com.linln.modules.system.domain.User;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author 小懒虫
@@ -40,4 +41,6 @@ public interface UserRepository extends BaseRepository<User, Long>, JpaSpecifica
      * @return 影响行数
      */
     public Integer deleteByIdIn(List<Long> ids);
+
+    public User findById(String id);
 }

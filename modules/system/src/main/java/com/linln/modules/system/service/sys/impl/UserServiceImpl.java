@@ -62,6 +62,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public User getById(String id) {
+        return userRepository.findById(id);
+    }
+
     /**
      * 获取分页列表数据
      * @param user 实体对象
